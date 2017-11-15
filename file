@@ -1,1 +1,45 @@
-Final modification 
+package { 'nginx' :
+name => 'nginx',
+ensure => installed,
+}
+service { 'nginx':
+  ensure => stopped,
+}
+
+cron { 'logrotate':
+  command => '/usr/sbin/logrotate',
+  user    => 'root',
+  hour    => 2,
+  minute  => 0,
+}
+
+file { '/etc/john1':
+ensure => 'file',
+content => 'this is working',
+mode => '0666'
+}
+
+file { '/etc/john2':
+ensure => 'link',
+target => '/etc/john1',
+}
+
+class basic_exec {
+
+  exec { 'update':
+    command => 'rm -rf /etc/file3',
+    path    => '/usr/local/bin/:/bin/',
+}
+}
+ group { 'stats':
+    ensure => present,
+    gid => 2001,
+  }
+
+
+user { 'mitchell':
+  ensure     => present,
+  uid        => '1023',
+  gid        => '2001',
+  shell      => '/bin/bash',
+  home       => '/home/mitchell'
