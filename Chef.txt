@@ -1,0 +1,31 @@
+https://manage.chef.io/signup - signup
+
+Give the username and email adress
+Go to your email and press the link they have sent
+
+Choos the password 
+Create new organization
+Download the kit
+
+
+Upload these to S3 
+and download it to the server with wget 
+dpkg -i with 
+
+once it is done successfully we will get a dir called chef-repo
+
+names you should remember
+attributes  files  metadata.rb  recipes  templates
+
+ knife client list
+
+to see what you can do with knife check (knife cookbook --help)
+
+Download a cookbook for nginx 
+knife cookbook site download apache2
+knife cookbook upload apache2
+
+
+Now the server and cookbook is ready, its time to bootstap a node and configure that apache2 cookbook init
+knife bootstarp 18.220.242.11 -x jprakash -p jEosh@123! --sudo -N Web1 
+
