@@ -241,3 +241,29 @@ tune2fs -O extents, uninit_bg, dir_index /dev/sda2
 e2fsck -pf /dev/sda2
 
 mount /dev/sda2 /home
+
+
+
+
+
+
+
+ lsblk
+   18  fdisk /dev/xvdf 
+   19  fdisk -l
+   20  apt-get install lvm2 -y
+   21  partprobe /dev/xvdf1
+   22  pvcreate /dev/xvdf1
+   23  vgcreate myvolgrp /dev/xvdf1
+   24  lvcreate -L 1G -n personal myvolgrp 
+   25  mkfs.ext3 /dev/myvolgrp/personal 
+   26  cd /mnt/
+   27  mkdir test
+   28  mount /dev/myvolgrp/personal /mnt/test/
+   29  lvextend -L1G /dev/myvolgrp/personal 
+   30  lvextend -L2G /dev/myvolgrp/personal
+  resize2fs /dev/myvolgrp/personal 
+  pvdisplay 
+   40  vgdisplay 
+   41  lvdisplay 
+
