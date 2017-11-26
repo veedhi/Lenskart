@@ -42,7 +42,10 @@ knife cookbook upload apache2
 Now the server and cookbook is ready, its time to bootstap a node and configure that apache2 cookbook init
 knife bootstarp 18.220.242.11 -x jprakash -p jEosh@123! --sudo -N Web1 
 scp -i wesley.pem chef-starter.zip ubuntu@ec2-13-59-43-209.us-east-2.compute.amazonaws.com:~
-
+knife node run_list set Web1 'recipe[started]'
+  
+  knife node run_list remove Web1 'recipe[started]'
+  knife node run_list set Web1 'recipe[starter]'
 
 
 Creating jenkins:
