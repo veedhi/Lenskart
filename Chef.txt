@@ -38,7 +38,7 @@ package 'nginx' do
   action :install
 end
 
-cookbook_file "/var/www/html/index.nginx-debian.html" do
+cookbook_file "/var/www/html/index.nginx-debian.html" do (/apache/files/default/index.html)
   source "index.html"
   mode "0644"
 end
@@ -52,7 +52,8 @@ directory '/home/ubuntu/test1' do
 action [:create]
 end
 
-template 'default' do
+template 'default' do    
+(templates/default/default.erb[(<%= node['apache']['listen'] %>)])  (attributes/default.rb[default['apache']['listen'] = '84']) 
 path '/etc/nginx/sites-available/default'
 source 'default.erb'
 end
