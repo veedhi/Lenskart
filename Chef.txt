@@ -32,7 +32,35 @@ to see what you can do with knife check (knife cookbook --help)
     directory: Manage directories on node
     execute: Execute a command on the node
     cron: Edit an existing cron file on the node
+    
+-------------------------------------------------     
+package 'nginx' do
+  action :install
+end
 
+cookbook_file "/var/www/html/index.nginx-debian.html" do
+  source "index.html"
+  mode "0644"
+end
+
+file '/home/ubuntu/test' do
+action [:create]
+content 'Hi i am testing you'
+end
+
+directory '/home/ubuntu/test1' do
+action [:create]
+end
+
+template 'default' do
+path '/etc/nginx/sites-available/default'
+source 'default.erb'
+end
+
+service 'nginx' do
+  action [ :restart, :enable ]
+end
+--------------------------------------------------
 
 Download a cookbook for nginx 
 knife cookbook site download apache2
